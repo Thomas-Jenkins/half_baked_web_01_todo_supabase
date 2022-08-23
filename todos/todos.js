@@ -31,6 +31,10 @@ todoForm.addEventListener('submit', async (e) => {
 // create todo state
 
 // add async complete todo handler function
+async function handleComplete(todo) {
+    await completeTodo(todo);
+    
+}
     // call completeTodo
     // swap out todo in array
     // call displayTodos
@@ -42,9 +46,15 @@ async function displayTodos() {
     todosEl.innerHTML = '';
     const todos = await getTodos();
     // display the list of todos, 
+    for (let todo of todos) {
+        const todoEl = renderTodo(todo, handleComplete());
+        todoEl.textContent = todo.todo;
+        todosEl.append(todoEl);
+    }
           // call render function, pass in state and complete handler function!
-    const callRenderTodos = renderTodo();
+    
           // append to .todos
+   
 }
 
 // add page load function
@@ -56,8 +66,10 @@ logoutButton.addEventListener('click', () => {
 });
 
 
-deleteButton.addEventListener('click', async() => {
+deleteButton.addEventListener('click', async () => {
     // delete all todos
+    await deleteAllTodos();
     // modify state to match
     // re displayTodos
+    await displayTodos();
 });
