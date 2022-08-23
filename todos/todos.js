@@ -83,5 +83,4 @@ deleteButton.addEventListener('click', async () => {
     // modify state to match
     // re displayTodos
     await displayTodos();
-    console.log(todos);
 });
